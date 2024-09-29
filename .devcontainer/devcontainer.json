@@ -12,7 +12,7 @@
   // "forwardPorts": [],
 
   // Use 'postCreateCommand' to run commands after the container is created.
-  // "postCreateCommand": "pip3 install --user -r requirements.txt",
+  "postCreateCommand": "bash scripts/post-create-devcontainer.sh",
 
   // Configure tool-specific properties.
   "customizations": {
@@ -22,7 +22,8 @@
         "ms-python.black-formatter",
         "esbenp.prettier-vscode",
         "GitHub.copilot",
-        "eamodio.gitlens"
+        "eamodio.gitlens",
+        "foxundermoon.shell-format"
       ]
     }
   }
