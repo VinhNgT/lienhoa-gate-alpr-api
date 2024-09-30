@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd ultimateALPR-SDK/binaries/linux/x86_64
+cd $LD_LIBRARY_PATH
 
 echo "Building ultimateALPR Python extension..."
 if [ ! -f _ultimateAlprSdk.so ]; then
@@ -17,21 +17,3 @@ if [ ! -f libtensorflow.so ]; then
 else
     echo "librensorflow already downloaded."
 fi
-
-echo "Installing Intel oneAPI runtime libs..."
-if ! dpkg -l | grep -q intel-oneapi-runtime-dpcpp-cpp; then
-    # download the key to system keyring
-    wget -O- https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB |
-        gpg --dearmor | sudo tee /usr/share/keyrings/oneapi-archive-keyring.gpg >/dev/null
-
-    # add signed entry to apt sources and configure the APT client to use Intel repository:
-    echo "deb [signed-by=/usr/share/keyrings/oneapi-archive-keyring.gpg] https://apt.repos.intel.com/oneapi all main" | sudo tee /etc/apt/sources.list.d/oneAPI.list
-
-    sudo apt update
-    sudo apt install intel-oneapi-runtime-dpcpp-cpp -y
-else
-    echo "Intel oneAPI runtime libs already installed."
-fi
-
-echo "Setting permissions..."
-chmod +x benchmark
