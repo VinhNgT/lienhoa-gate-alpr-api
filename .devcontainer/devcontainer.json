@@ -12,7 +12,7 @@
   // "forwardPorts": [],
 
   // Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "bash scripts/post-create-devcontainer.sh",
+  // "postCreateCommand": "bash scripts/post-create-devcontainer.sh",
 
   // Configure tool-specific properties.
   "customizations": {
@@ -31,14 +31,14 @@
         }
       }
     }
-  },
+  }
 
   // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
   // "remoteUser": "root"
 
-  "containerEnv": {
-    "WORKSPACE_PATH": "${containerWorkspaceFolder}",
-    "SDK_PATH": "${containerWorkspaceFolder}/ultimateALPR-SDK",
-    "LD_LIBRARY_PATH": "${containerWorkspaceFolder}/ultimateALPR-SDK/binaries/linux/x86_64"
-  }
+  // "containerEnv": {
+  //   "WORKSPACE_PATH": "${containerWorkspaceFolder}",
+  //   "SDK_PATH": "${containerWorkspaceFolder}/ultimateALPR-SDK",
+  //   "LD_LIBRARY_PATH": "${containerWorkspaceFolder}/ultimateALPR-SDK/binaries/linux/x86_64"
+  // }
 }
