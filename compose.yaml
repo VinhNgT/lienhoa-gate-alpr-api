@@ -1,0 +1,10 @@
+services:
+  lienhoa-gate-alpr-api:
+    build: .
+    image: ghcr.io/vinhngt/lienhoa-gate-alpr-api:latest
+    container_name: lienhoa-gate-alpr-api
+
+    ports:
+      - "80:80"
+
+    restart: unless-stopped
