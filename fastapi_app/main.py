@@ -1,18 +1,26 @@
 from contextlib import asynccontextmanager
-from fastapi import FastAPI, HTTPException, status, File, UploadFile
-from fastapi.responses import JSONResponse, PlainTextResponse
+from fastapi import FastAPI, HTTPException, status, UploadFile
 from openalpr import Alpr
 import imghdr
-import json
 from fastapi_app.models import RequestResponse
 import requests
 from io import BytesIO
 from fake_useragent import UserAgent
+import os
+
 
 alpr = Alpr("vn", "/etc/openalpr/openalpr.conf", "/usr/share/openalpr/runtime_data")
-alpr.set_top_n(5)
-
 ua = UserAgent()
+
+# The number of results to return for each image.
+ALPR_TOP_N = int(os.getenv("ALPR_TOP_N", 5))
+
+# See openalpr/runtime_data/postprocess/vn.patterns for available patterns.
+DEFAULT_PATTERN = os.getenv("DEFAULT_PATTERN")
+
+alpr.set_top_n(ALPR_TOP_N)
+if DEFAULT_PATTERN:
+    alpr.set_default_region(DEFAULT_PATTERN)
 
 
 @asynccontextmanager
