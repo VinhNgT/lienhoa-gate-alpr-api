@@ -40,7 +40,7 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(
-    title="LienHoa auto parking gate ALPR API",
+    title="LienHoa auto gate - ALPR API",
     version=VERSION,
     summary="API xử lý nhận diện biển số xe.",
     contact={
