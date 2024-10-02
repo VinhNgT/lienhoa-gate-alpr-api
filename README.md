@@ -38,6 +38,10 @@
 ## Manual start (Linux only, not automatically start on boot, more error prone)
 
 ```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
 export WORKSPACE_PATH=$(pwd)
 export OPENALPR_PATH=$WORKSPACE_PATH/openalpr
 
