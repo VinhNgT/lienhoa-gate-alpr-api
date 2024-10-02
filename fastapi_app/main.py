@@ -1,5 +1,6 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException, status, UploadFile
+from fastapi.responses import PlainTextResponse
 from openalpr import Alpr
 import imghdr
 from fastapi_app.models import RequestResponse
@@ -11,6 +12,14 @@ import os
 
 alpr = Alpr("vn", "/etc/openalpr/openalpr.conf", "/usr/share/openalpr/runtime_data")
 ua = UserAgent()
+
+# Get the app's version number.
+try:
+    with open("version.txt", "r") as version_file:
+        VERSION = version_file.read().strip()
+
+except FileNotFoundError:
+    VERSION = "0.0.1"
 
 # The number of results to return for each image.
 ALPR_TOP_N = int(os.getenv("ALPR_TOP_N", 5))
@@ -32,7 +41,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title="LienHoa auto parking gate ALPR API",
-    version="1.0.0",
+    version=VERSION,
     summary="API xử lý nhận diện biển số xe.",
     contact={
         "name": "Nguyễn Thế Vinh",
@@ -41,6 +50,16 @@ app = FastAPI(
     },
     lifespan=lifespan,
 )
+
+
+@app.get(
+    "/",
+    summary="Welcome screen",
+    tags=["pages"],
+    response_class=PlainTextResponse,
+)
+def homescreen():
+    return "Hello, World!"
 
 
 @app.post(

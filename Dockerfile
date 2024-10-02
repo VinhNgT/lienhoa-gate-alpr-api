@@ -13,4 +13,6 @@ COPY ./requirements.txt requirements.txt
 RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
 COPY ./fastapi_app /code/fastapi_app
+COPY ./version.txt /code/version.txt
+
 CMD ["fastapi", "run", "fastapi_app/main.py", "--port", "80"]
