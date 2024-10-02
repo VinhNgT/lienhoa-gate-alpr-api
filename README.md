@@ -1,3 +1,9 @@
+# LienHoa auto gate - ALPR API
+
+API for license plates image processing.
+
+![GitHub Tag](https://img.shields.io/github/v/tag/VinhNgT/lienhoa-gate-alpr-api?style=flat-square)
+
 **Note**: Use a 64-bit x84 computer.
 
 ## Quick start
