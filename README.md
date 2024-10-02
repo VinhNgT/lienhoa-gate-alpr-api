@@ -2,6 +2,14 @@
 
 ## Quick start
 
+### Install Docker
+
+#### Windows
+
+- Download and install docker from https://www.docker.com/
+
+#### Linux
+
 - Install docker: https://docs.docker.com/engine/install/debian/
 - Run `sudo usermod -aG docker $USER`
 - Start services on boot:
@@ -20,6 +28,9 @@
   ```
 
 - Reboot with `sudo reboot`
+
+### Start docker container
+
 - Run `docker compose up`
   - Note: You can use `docker compose up --build` to force build locally.
 - Use examples in `insomnia_exports` to familiarize yourself, or go to http://localhost/docs
