@@ -24,7 +24,7 @@
     "vscode": {
       "extensions": [
         "-ms-python.autopep8",
-        "ms-python.black-formatter",
+        "charliermarsh.ruff",
         "esbenp.prettier-vscode",
         "GitHub.copilot",
         "eamodio.gitlens",
@@ -32,7 +32,7 @@
       ],
       "settings": {
         "[python]": {
-          "editor.defaultFormatter": "ms-python.black-formatter"
+          "editor.defaultFormatter": "charliermarsh.ruff"
         }
       }
     }
