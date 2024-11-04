@@ -10,14 +10,15 @@
     "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
       "version": "latest",
       "dockerDashComposeVersion": "none"
-    }
+    },
+    "./openalpr-dependencies": {}
   },
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   "forwardPorts": [8000],
 
   // Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "bash scripts/post-create-devcontainer.sh",
+  "postCreateCommand": "bash bootstrap.sh",
 
   // Configure tool-specific properties.
   "customizations": {

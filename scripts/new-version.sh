@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # Get version from user input.
 while true; do
     read -p "Enter new version (format X.Y.Z): " user_input
