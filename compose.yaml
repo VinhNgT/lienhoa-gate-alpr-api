@@ -7,8 +7,9 @@ services:
     ports:
       - "80:80"
 
-    # environment:
-    #   ALPR_TOP_N: 5
-    #   DEFAULT_PATTERN: "regu5"
+    environment:
+      # ALPR_TOP_N: 5
+      # DEFAULT_PATTERN: "regu5"
+      # PREWARP: "planar,1920.000000,1080.000000,-0.000000,0.001250,-0.000000,1.000000,1.000000,0.000000,0.000000"
 
     restart: unless-stopped
