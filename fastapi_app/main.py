@@ -1,14 +1,15 @@
-from contextlib import asynccontextmanager
-from fastapi import FastAPI, HTTPException, status, UploadFile
-from fastapi.responses import PlainTextResponse
-from openalpr import Alpr
 import imghdr
-from fastapi_app.models import RequestResponse
-import requests
-from io import BytesIO
-from fake_useragent import UserAgent
 import os
+from contextlib import asynccontextmanager
+from io import BytesIO
 
+import requests
+from fake_useragent import UserAgent
+from fastapi import FastAPI, HTTPException, UploadFile, status
+from fastapi.responses import PlainTextResponse
+
+from fastapi_app.models import RequestResponse
+from openalpr import Alpr
 
 alpr = Alpr("vn", "/etc/openalpr/openalpr.conf", "/usr/share/openalpr/runtime_data")
 ua = UserAgent()
@@ -23,13 +24,18 @@ except FileNotFoundError:
 
 # The number of results to return for each image.
 ALPR_TOP_N = int(os.getenv("ALPR_TOP_N", 5))
+alpr.set_top_n(ALPR_TOP_N)
 
 # See openalpr/runtime_data/postprocess/vn.patterns for available patterns.
 DEFAULT_PATTERN = os.getenv("DEFAULT_PATTERN")
-
-alpr.set_top_n(ALPR_TOP_N)
 if DEFAULT_PATTERN:
     alpr.set_default_region(DEFAULT_PATTERN)
+
+# The prewarp configuration. Run openalpr-utils-calibrate {image_path} to get
+# this value.
+PREWARP = os.getenv("PREWARP")
+if PREWARP:
+    alpr.set_prewarp(PREWARP)
 
 
 @asynccontextmanager
