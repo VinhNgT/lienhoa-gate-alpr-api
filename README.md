@@ -37,8 +37,9 @@ API for license plates image processing.
 
 ### Start docker container
 
-- Run `docker compose up`
-  - Note: You can use `docker compose up --build` to force build locally.
+- Download the `compose.yaml` file.
+- Run `docker compose up` or `docker compose up -d` in the folder where you saved the file.
+  - Tip: You can use `--build` to force build locally if you cloned the whole project.
 - Use examples in `insomnia_exports` to familiarize yourself, or go to http://localhost/docs
 
 ## Setup development enviroment
