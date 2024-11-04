@@ -41,23 +41,26 @@ API for license plates image processing.
   - Note: You can use `docker compose up --build` to force build locally.
 - Use examples in `insomnia_exports` to familiarize yourself, or go to http://localhost/docs
 
-## Manual start (Linux only, not automatically start on boot, more error prone)
+## Setup development enviroment
 
-```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
+- Install Docker using the above quickstart guide.
+- Install VS Code.
+- Install "Dev Containers" extension.
+- Open the project using devcontainer.
+- Start the server.
 
-export WORKSPACE_PATH=$(pwd)
-export OPENALPR_PATH=$WORKSPACE_PATH/openalpr
+  ```bash
+  # Start on port 8000
+  bash scripts/start-server.sh
+  ```
 
-bash scripts/post-create-devcontainer.sh
+  ```bash
+  # Start on port 80
+  sudo su
+  fastapi run fastapi_app/main.py --port 80
+  ```
 
-sudo su
-fastapi run fastapi_app/main.py --port 80
-```
-
-Alternative: https://www.geeksforgeeks.org/bind-port-number-less-1024-non-root-access/
+  Alternative non-root: https://www.geeksforgeeks.org/bind-port-number-less-1024-non-root-access/
 
 ## Upgrade packages:
 
