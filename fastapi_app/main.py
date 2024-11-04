@@ -23,18 +23,23 @@ except FileNotFoundError:
     VERSION = "0.0.1"
 
 # The number of results to return for each image.
-ALPR_TOP_N = int(os.getenv("ALPR_TOP_N", 5))
-alpr.set_top_n(ALPR_TOP_N)
+ALPR_TOP_N = os.getenv("ALPR_TOP_N")
+if ALPR_TOP_N is not None:
+    ALPR_TOP_N = int(ALPR_TOP_N)
+    print(f"Setting top-n to {ALPR_TOP_N}")
+    alpr.set_top_n(ALPR_TOP_N)
 
 # See openalpr/runtime_data/postprocess/vn.patterns for available patterns.
 DEFAULT_PATTERN = os.getenv("DEFAULT_PATTERN")
 if DEFAULT_PATTERN:
+    print(f"Setting default-pattern (default-region) to {DEFAULT_PATTERN}")
     alpr.set_default_region(DEFAULT_PATTERN)
 
 # The prewarp configuration. Run openalpr-utils-calibrate {image_path} to get
 # this value.
 PREWARP = os.getenv("PREWARP")
 if PREWARP:
+    print(f"Setting pre-warp to {PREWARP}")
     alpr.set_prewarp(PREWARP)
 
 
